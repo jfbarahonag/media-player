@@ -1,0 +1,27 @@
+{
+  "name": "media-player",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "live-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jfbarahonag/media-player.git"
+  },
+  "keywords": [
+    "javascript",
+    "npm"
+  ],
+  "author": "Juan Felipe Barahona Gonzalez <jfbarahonag@unal.edu.co>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jfbarahonag/media-player/issues"
+  },
+  "homepage": "https://github.com/jfbarahonag/media-player#readme",
+  "devDependencies": {
+    "live-server": "^1.2.1"
+  }
+}
