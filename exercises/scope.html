@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scope</title>
+</head>
+<body>
+    <a href="/exercises/">Go back</a>
+    <p><em>Open the console</em></p>
+    <!-- Trough CDN -->
+    <script src="https://unpkg.com/jquery@3.3.1/dist/jquery.js"></script>
+
+    <script>
+        var message = "Hello Platzi!"
+
+        console.log("In JS there are 4 scopes:")
+        console.log("1. Global scope")
+        console.log("2. Function scope")
+        console.log("3. Block scope")
+        console.log("4. Module scope")
+
+        var $ = (message) => { // override jquery symbol
+            console.log(`Say: ${message}`)
+        }
+
+        var printNumbers = () => {
+            for (var i = 0; i < 10; i++) {
+                setTimeout(() => {
+                    console.log(i)
+                }, 100)     
+            }
+        }
+
+        printNumbers()
+        
+        var printNumbersCorrected = () => {
+            for (var i = 0; i < 10; i++) {
+                correction = (n) => {
+                    setTimeout(() => {
+                        console.log(n)
+                    }, 100)     
+                }
+                correction(i)
+            }
+        }
+        
+        printNumbersCorrected()
+        
+        var printNumbers2 = () => {
+            for (let i = 0; i < 10; i++) { //using "let" for each iteration execution a new block is generated
+                setTimeout(() => {
+                    console.log(i)
+                }, 100)     
+            }
+        }
+
+        printNumbers2()
+        </script>
+</body>
+</html>
