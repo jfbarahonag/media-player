@@ -28,7 +28,7 @@ class MediaPlayer {
         this.video_.pause()
     }
 
-    toggle = () => {
+    togglePlay = () => {
         if (!this.fail_) {
         if (this.video_.paused) {
             this.video_.play()
@@ -42,6 +42,10 @@ class MediaPlayer {
 
     mute = () => {
         this.video_.muted = true
+    }
+
+    toggleAudio = () => {
+        this.video_.muted ^= 1
     }
 }
 // to be called in index.js
