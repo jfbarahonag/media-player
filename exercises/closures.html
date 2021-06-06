@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Closures</title>
+</head>
+<body>
+    <a href="/exercises/">Go back</a>
+    <p><em>Open the console</em></p>
+   
+    <script>
+        //IIFE (Immediately Invoke Function Expression)
+        ( 
+            function() {
+            let color = 'green'
+    
+            const printColor = () => {
+                console.log(color);
+            }
+    
+            printColor()
+            } 
+        )()
+
+        function makeColorPrinter(color) {
+            let colorMessage = `The color is ${color}`
+            return function () {
+                return colorMessage
+            }
+        }
+
+        let greenColorPrinter = makeColorPrinter("green")
+        console.log(greenColorPrinter());
+        console.log((makeColorPrinter("red"))()); //IIFE
+
+        const counter = {
+            count: 3 //is accessible by the console, but i don't want this
+        }
+        console.log(counter.count)
+
+        function makeCounter (n) {
+            let count = n // works as a private variable
+            return {
+                increase: (qty) => count += qty,
+                decrease: (qty) => count -= qty,
+                getCount: () => count,
+
+            }
+        }
+        let counter2 = makeCounter(7)
+        console.log(counter2.count)
+
+    </script>
+</body>
+</html>
