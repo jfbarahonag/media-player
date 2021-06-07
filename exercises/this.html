@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>this</title>
+</head>
+<body>
+    <a href="/exercises/">Go back</a>
+    <p><em>Open the console</em></p>
+
+    <h1>
+        <code>this</code> is referred to an object. This object is whose is executing a chunk of code
+    </h1>
+    <script>
+        // global scope
+        console.log(`this = ${this}`);
+        // function scope
+        function whoIsThis() {
+            return this
+        }
+        console.log(`whoIsThis(): ${whoIsThis()}`);
+        // function scope in strict mode
+        function whoIsThisStrict() {
+            'use strict'
+            return this
+        }
+        console.log(`whoIsThisStrict(): ${whoIsThisStrict()}`);
+        // Object context
+        const Person = {
+            name : "Felipe",
+            // If you need "this" don't use arrow functions.
+            sayHi : () => console.log(`[Lambda] Hi, I am ${this.name}`),
+            sayBye : function () {
+                console.log(`[Function] Bye, please remember my name: ${this.name}`);
+            }
+        }
+        Person.sayHi()
+        Person.sayBye()
+        // When a function is called out of an object
+        const action = Person.sayBye
+        action()
+        // Inside a class
+        class Dog {
+            constructor(name) {
+                this.name = name
+                this.say = "guaaaaaaau"
+                this.sleep = "zzzzzz"
+            }
+            
+            bark() {
+                console.log(`[${this.name}] ${this.say}`)
+            }
+
+            goSleep = () => {
+                console.log(`[${this.name}] ${this.sleep}`);
+            }
+        }
+
+        const wanda = new Dog("Wanda")
+        wanda.bark()
+        wanda.goSleep()
+    </script>
+</body>
+</html>
