@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Call-Apply-Bind</title>
+</head>
+<body>
+    <a href="/exercises/">Go back</a>
+    <p><em>Open the console</em></p>
+
+    <ul>
+        <li><button class="call-to-action">Learn</button></li>
+        <li><button class="call-to-action">Learn More</button></li>
+        <li><button class="call-to-action">Never Stop to Learn</button></li>
+    </ul>
+
+    <script>
+        function sayHi(src) {
+            console.log(`Hi, I am ${this.firstName} ${this.lastName} from ${src}`)
+        }
+        
+        function walk(dist, direction) {
+            console.log(`${this.firstName} walks ${dist} meters to the ${direction}`)
+        }
+        
+        const Felipe = {
+            firstName: 'Juan Felipe',
+            lastName: 'Barahona Gonzalez',
+        }
+        
+        /*  Mental note
+            (C)all - (C)omma
+            (A)pply - (A)rray
+        */
+        
+        // Establish 'this' using 'call' and passing arguments.
+        sayHi.call(Felipe, "call")
+        walk.call(Felipe, 150, "north")
+        console.log('------------------------------------------');
+        // Establish 'this' using 'call' and passing arguments.
+        walk.apply(Felipe, [300, "north-east"])
+        console.log('------------------------------------------');
+        // Establish 'this' using 'bind' in a new function.
+        const FelipeSayHi = sayHi.bind(Felipe)
+        FelipeSayHi("bind")
+        const FelipeWalk = walk.bind(Felipe)
+        FelipeWalk(1000, 'south-west')
+        const FelipeWalk2 = walk.bind(Felipe, 2000, 'east')
+        FelipeWalk2()
+        const FelipeWalk3 = walk.bind(Felipe, 245) //Currying -> partial args
+        FelipeWalk3("west")
+        console.log('------------------------------------------'); // Tests of functions as first Class citizens
+        // change a specific word of a text
+        let replace = (text) => {
+            return text.replace('bad', 'excellent')
+        }
+
+        console.log(replace("JS is a bad language"))
+        
+        // change any word of a text
+        let replaceGeneric = (original, newOne) => text => text.replace(original, newOne) //Currying
+        
+        const  replaceForPython = replaceGeneric(/JS/ig, "Python")
+        const  replaceForCPP = replaceGeneric('JS', "C++")
+
+        console.log(replaceForPython('JS is the best language programming'));
+        console.log(replaceForCPP('JS is the best language programming'));
+
+        let sum = (x,y) => x + y
+        let sumv2 = x => y => x + y //Currying
+
+        console.log(sum(1,2));
+        const sumOne = sumv2(1)
+        console.log(sumOne(3));
+        
+        const sumTwo = sumv2(2)(10)
+        console.log(sumTwo);
+        console.log('------------------------------------------');
+        const buttons = document.getElementsByClassName("call-to-action")
+        // buttons.forEach(button => {
+            // button.onClick = () => alert('Never stop to learn')
+        // });
+        Array.prototype.forEach.call(buttons/*this*/, button => {
+            button.onclick = () => alert("Never stop to learn")
+        })
+    </script>
+</body>
+</html>

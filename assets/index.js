@@ -6,7 +6,7 @@ const play = document.querySelector('.play')
 const mute = document.querySelector('.mute')
 const player = new MediaPlayer({
     el: video, 
-    plugins: [new AutoPlay()]
+    plugins: [/*new AutoPlay()*/]
 }) //as a dictionary
 
 play.onclick = () => player.togglePlay()
