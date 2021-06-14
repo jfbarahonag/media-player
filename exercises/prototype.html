@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prototype</title>
+</head>
+<body>
+    <a href="/exercises/">Go back</a>
+    <p><em>Open the console</em></p>
+
+    <script>
+        // Create an object like other any objects
+            // const vipe = {
+            //     name: 'Vipe GB'
+            // }
+            
+            // vipe.open = function(){
+            //     console.log(`[${this.name}] Hi, we're open`);
+            // }
+            // vipe.open()
+            
+            // const phoneBox = {
+            //     name: 'phoneBox'
+            // }
+            
+            // phoneBox.open = function(){
+            //     console.log(`[${this.name}] Hi, we're open`);
+            // }
+            // phoneBox.open()
+        // Being more efficient
+            // function Enterprise(name) {
+            //     const enterprise = {
+            //         name_ : name
+            //     }
+            
+            //     enterprise.open = function() { //This function is defined each time we call Hero() so it is not so efficient
+            //         console.log(`[${this.name_}] Hi, we're open`)
+            //     }
+            
+            //     return enterprise
+            // }
+            
+            // const vipe = Enterprise('Vipe GB')
+            // vipe.open()
+            
+            // const phoneBox = Enterprise('phone box')
+            // phoneBox.open()
+        // Improving efficiency even more
+            // const enterpriseMethods = {
+            //     open: function() {
+            //         console.log(`[${this.name_}] Hi, we're open from 8 a.m to 6 p.m`)
+            //     }
+            // }
+            
+            // function Enterprise(name) {
+            //     const enterprise = {
+            //         name_ : name
+            //     }
+            
+            //     enterprise.open = enterpriseMethods.open
+            
+            //     return enterprise
+            // }
+            // const vipe = Enterprise('Vipe GB')
+            // vipe.open()
+            
+            // const phoneBox = Enterprise('phone box')
+            // phoneBox.open()
+        // Using Object.create
+            // const enterpriseMethods = {
+            //     open: function() {
+            //         console.log(`[${this.name_}] We already opened`)
+            //     }
+            // }
+            
+            // function Enterprise(name) {
+            //     const enterprise = Object.create(enterpriseMethods) //All properties of enterpriseMethods will be part of Enterprise
+            //     enterprise.name_ = name
+            
+            //     return enterprise
+            // }
+            // const vipe = Enterprise('Vipe GB')
+            // vipe.open()
+            
+            // const phoneBox = Enterprise('phone box')
+            // phoneBox.open()
+        // Methods of enterprise inside Enterprise
+            // const enterpriseMethods = { //UNUSED
+            //     open: function() {
+            //         console.log(`[${this.name_}] We already opened`)
+            //     }
+            // }
+            
+            // function Enterprise(name) {
+            //     const enterprise = Object.create(Enterprise.prototype) //All properties of enterpriseMethods will be part of Enterprise
+            //     enterprise.name_ = name
+            
+            //     return enterprise
+            // }
+            
+            // Enterprise.prototype.open = function() {
+            //         console.log(`[${this.name_}] We are opening`)
+            // }
+            
+            // const vipe = Enterprise('Vipe GB')
+            // vipe.open()
+            
+            // const phoneBox = Enterprise('phone box')
+            // phoneBox.open()
+        // Using sugar syntax (new)
+        function Enterprise(name) {
+            // const enterprise = Object.create(Enterprise.prototype) //All properties of Prototype will be part of Enterprise (Not needed, language do this automatically)
+            // enterprise.name_ = name Is converted to this pointer`
+            this.name_ = name
+        
+            // return enterprise (Not needed, language do this automatically)
+        }
+        
+        Enterprise.prototype.open = function() {
+                console.log(`[${this.name_}] open using new`)
+        }
+
+        const vipe = new Enterprise('Vipe GB')
+        vipe.open()
+        
+        const phoneBox = new Enterprise('phone box')
+        phoneBox.open()
+    </script>
+</body>
+</html>
