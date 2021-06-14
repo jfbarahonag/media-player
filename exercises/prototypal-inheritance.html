@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prototypal inheritance</title>
+</head>
+<body>
+    <a href="/exercises/">Go back</a>
+    <p><em>Open the console</em></p>
+
+    <script>
+        function Hero(name) {
+            this.name_ = name
+        }
+
+        Hero.prototype.greetings = function() {
+            console.log(`Hello I am ${this. name_}`);
+        }
+
+        const zelda = new Hero("Zelda");
+        // Instance properties
+        console.log('name', zelda.name_)
+        // Class properties
+        console.log('greetings', zelda.greetings)
+        // Inherited properties
+        console.log('toString', zelda.toString)
+        console.log('zelda.hasOwnProperty("name_")', zelda.hasOwnProperty("name_"))
+        console.log('zelda.hasOwnProperty("greetings")', zelda.hasOwnProperty("greetings"))
+        console.log()
+    </script>
+</body>
+</html>
